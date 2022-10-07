@@ -4,6 +4,8 @@ import { Input, Button } from 'react-native-elements';
 import React,{useState} from 'react';
 import {firebase} from '../../config/firebase';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector, useDispatch } from "react-redux";
+import {addProductStart} from "../redux/action";
 
 export default function AddProduct() {
   const navigation = useNavigation();
@@ -12,9 +14,12 @@ export default function AddProduct() {
     const [price,setPrice] = useState('');
     const [offerPrice,setOfferPrice] = useState('');
 
+    let dispatch = useDispatch();
+
     const productRef = firebase.firestore().collection('Products');
 
     const aProduct = () => {
+
       if(addProduct && addProduct.length > 0 || price && price.length > 0 || offerPrice && offerPrice.length > 0 ){
         const timestamp  = firebase.firestore.FieldValue.serverTimestamp();
         const data = {
@@ -23,16 +28,19 @@ export default function AddProduct() {
           offPrice: offerPrice,
           createdAt: timestamp
         };
-        productRef.add(data).then(()=>{
-          setAddProduct('');
-          Keyboard.dismiss();
-          setAddProduct("")
-          setPrice("")
-          setOfferPrice("")
-          navigation.navigate('Home')
-        }).catch((er) =>{
-          alert(er)
-        })
+        
+        dispatch(addProductStart(data))
+
+        // productRef.add(data).then(()=>{
+        //   setAddProduct('');
+        //   Keyboard.dismiss();
+        //   setAddProduct("")
+        //   setPrice("")
+        //   setOfferPrice("")
+        //   navigation.navigate('Home')
+        // }).catch((er) =>{
+        //   alert(er)
+        // })
       }
      
     }
