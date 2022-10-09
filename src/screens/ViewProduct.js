@@ -9,16 +9,17 @@ export default function ViewProduct() {
   const [productList, setProductList] = useState([])
 
   const productRef = firebase.firestore().collection('Products');
-//const { products: data} = useSelector((state) => state.data);
-//const state = useSelector((state) => state.data);
-//console.log("data",data);
+const { products: data} = useSelector((state) => state.data);
+const state = useSelector((state) => state.data);
+console.log("data",data);
 
 
 let dispatch = useDispatch();
 
   useEffect(() => {
-   // dispatch(getProductStart());
-   //setProductList(data)
+
+  //   dispatch(getProductStart())
+  //  setProductList(data)
     productRef.orderBy('createdAt', 'desc').onSnapshot(querySnapshot => {
       const productList = []
       querySnapshot.forEach((doc) => {
@@ -34,6 +35,8 @@ let dispatch = useDispatch();
     }
     )
   }, [])
+
+
   const deleteProduct = (productList) => {
     // productRef.doc(productList.id).delete().then(() => {
     //   alert("Deleted Product")

@@ -30,7 +30,7 @@ export default function AddProduct() {
         };
         
         dispatch(addProductStart(data))
-
+        navigation.navigate('Home')
         // productRef.add(data).then(()=>{
         //   setAddProduct('');
         //   Keyboard.dismiss();

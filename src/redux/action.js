@@ -1,5 +1,23 @@
 import  * as types from "./actionType";
 
+//ADD Product
+
+export const addProductStart  = (product) => ({
+    type: types.ADD_PRODUCT_START,
+    payload:product
+});
+
+export const addProductSucces  = () => ({
+    type: types.ADD_PRODUCT_SUCCESS,
+});
+
+export const addProductFail = (error) => ({
+    type: types.ADD_PRODUCT_FAIL,
+    payload: error,
+
+});
+
+//View Product
 export const getProductStart  = () => ({
     type: types.GET_PRODUCT_START,
 });
@@ -34,19 +52,20 @@ export const deleteProductFail = (error) => ({
 });
 
 
-//ADD Product
+//Update product
 
-export const addProductStart  = (product) => ({
-    type: types.ADD_PRODUCT_START,
-    payload:product
+export const updateProductStart  = (data) => ({
+    type: types.UPDATE_PRODUCT_START,
+    payload:data
 });
 
-export const addProductSucces  = () => ({
-    type: types.ADD_PRODUCT_SUCCESS,
+export const updateProductSucces  = () => ({
+    type: types.UPDATE_PRODUCT_SUCCESS,
 });
 
-export const addProductFail = (error) => ({
-    type: types.ADD_PRODUCT_FAIL,
+export const updateProductFail = (error) => ({
+    type: types.UPDATE_PRODUCT_FAIL,
     payload: error,
 
 });
+
